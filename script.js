@@ -1,9 +1,19 @@
 import kanban from "./kanban.js";
-// import { data } from "./data.js";
+import { data } from "./data.js";
+// import { newData } from "./data.js";
 
 
+const DbInit = ()=>{
+    if(!localStorage.getItem("data")){
+    localStorage.setItem("data",JSON.stringify(data))
+    }
+}
+DbInit();
+
+// console.log(newData);
 
 const todo = document.querySelector(".cards.todo");
+// console.log(todo.innerHTML);
 const pending = document.querySelector(".cards.pending");
 const completed = document.querySelector(".cards.completed");
 
@@ -26,6 +36,7 @@ function addTaskCard(task, index){
                                 </div>`;
                                 taskbox[index].appendChild(element);
 }
+
 kanban.getAllTasks().forEach((tasks, index)=>{
     tasks.forEach(task =>{
        addTaskCard(task, index);
